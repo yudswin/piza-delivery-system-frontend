@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="#"> <img  width="" src="./header.png" alt="PiZà" /> </a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PiZà Delivery System Frontend
+![Node.js Version](https://img.shields.io/node/v/package)
 
-## Available Scripts
+## 🎆 Description 
 
-In the project directory, you can run:
+Welcome to the PiZà Delivery System! This project is a React-based frontend implementation of a dynamic food ordering system. 
 
-### `npm start`
+## ⚒️ Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To set up the frontend, follow these simple steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository
+2. Run `npm install` to install the necessary dependencies
 
-### `npm test`
+## 🎆 Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you embark on this journey, make sure you have the following prerequisites in place:
 
-### `npm run build`
+* The latest version of [Node.js and npm](https://nodejs.org/en/download/) installed on your system.
+* Essential npm packages:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+@ant-design/icons@5.2.6
+@babel/plugin-proposal-private-property-in-object@7.21.11
+@reduxjs/toolkit@2.0.1
+@tanstack/react-query-devtools@5.14.2
+@tanstack/react-query@5.14.2
+@testing-library/jest-dom@5.17.0
+@testing-library/react@13.4.0
+@testing-library/user-event@13.5.0
+antd-table-saveas-excel@2.2.1
+antd@5.12.1
+axios@1.6.2
+dotenv@16.3.1
+jwt-decode@4.0.0
+react-dom@18.2.0
+react-headroom@3.2.1
+react-icons@4.12.0
+react-redux@9.0.2
+react-router-dom@6.20.1
+react-scripts@5.0.1
+react-slick@0.29.0
+react-slick@0.29.0
+react@18.2.0
+redux-persist@6.0.0
+slick-carousel@1.8.1
+styled-components@6.1.1
+web-vitals@2.1.4
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🏗️ Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`src/`: The primary directory for the application's source code.
+- `components/`: Contains all the React components utilized throughout the application.
+- `hooks/`: Houses the custom React hooks used in the application.
+- `pages/`: Defines the main pages or views of the application.
+- `redux/`: Contains the Redux store, actions, and reducers for state management.
+- `routes/`: Presumably contains the routing configuration for the application.
+- `services/`: Typically includes any services the application uses, such as API calls.
 
-### `npm run eject`
+## ▶️ Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To start the server, run `npm start`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The backend for this project can be found at [PiZà Delivery System Backend](https://github.com/yudswin/piza-delivery-system-backend).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 💁🏻 Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you want to contribute to this project, please open an issue or a pull request.
