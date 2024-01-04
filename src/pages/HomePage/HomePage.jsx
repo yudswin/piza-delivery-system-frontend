@@ -12,41 +12,39 @@ import slider2 from '../../assets/sliders/slider2.jpg';
 import slider3 from '../../assets/sliders/slider3.jpg';
 import { useQuery } from "@tanstack/react-query";
 
-
 const HomePage = () => {
-    const [typeProducts, setTypeProducts] = useState([])
-    const [bestSellerProducts, setBestSellerProducts] = useState([])
-
-
-    const fetchAllProduct = async () => {
-        // const limit = context?.queryKey && context?.queryKey[1]
-        // const search = context?.queryKey && context?.queryKey[2]
-        const res = await FoodService.getAllFood()
-        // console.log('res', res);
-        return res
-    }
+    const [typeFoods, setTypeFoods] = useState([])
+    const [bestSellerFoods, setBestSellerFoods] = useState([])
 
     const fetchAllTypeProduct = async () => {
-        const res = await FoodService.getAllTypeFood()
-        if (res?.status === 'OK') {
-            setTypeProducts(res?.data)
+        try {
+            const res = await FoodService.getAllTypeFood()
+            if (res?.status === 'OK') {
+                setTypeFoods(res?.data)
+            }
+        } catch (error) {
+            // console.log('error', error);
         }
     }
 
     const fetchAllBestSeller = async () => {
-        const res = await FoodService.getAllBestFood()
-        console.log('res', res);
-        if (res?.status === 'OK') {
-            setBestSellerProducts(res?.data)
+        try {
+            const res = await FoodService.getAllBestFood()
+            // console.log('res', res);
+            if (res?.status === 'OK') {
+                setBestSellerFoods(res?.data)
+            }
+        } catch (error) {
+            // console.log('error', error);
         }
     }
 
-    const { isLoading, data: products } = useQuery({
-        queryKey: ['products'],
-        queryFn: fetchAllProduct,
-        options: { retry: 3, retryDelay: 1000 }
-    });
-    console.log('data', products);
+    // const { isLoading, data: products } = useQuery({
+    //     queryKey: ['products'],
+    //     queryFn: fetchAllProduct,
+    //     options: { retry: 3, retryDelay: 1000 }
+    // });
+    // console.log('data', products);
 
     useEffect(() => {
         fetchAllTypeProduct()
@@ -70,7 +68,7 @@ const HomePage = () => {
                         <HeadingTextWrapper> Menu </HeadingTextWrapper>
                     </FoodTypeTextWrapper>
                     <FoodTypeWrapper>
-                        {typeProducts.map((item) => {
+                        {typeFoods.map((item) => {
                             return (
                                 <CardComponent name={item} key={item} />
                             )
@@ -85,7 +83,7 @@ const HomePage = () => {
                         </div>
                     </FoodTypeTextWrapper>
                     <BestSellerWrapper>
-                        {bestSellerProducts.map((product) => (
+                        {bestSellerFoods.map((product) => (
                             <BestSellerCard
                                 key={product.name}
                                 name={product.name}

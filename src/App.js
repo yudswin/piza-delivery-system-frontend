@@ -52,9 +52,8 @@ function App() {
       dispatch(updateUser({ ...res?.data, accessToken: token }))
       setIsLoading(false)
       // console.log(res?.data)
-    }
-    catch (e) {
-      console.log(e)
+    } catch (error) {
+      // console.log(error)
     }
   }
 

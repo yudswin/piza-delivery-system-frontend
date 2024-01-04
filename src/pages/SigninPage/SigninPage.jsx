@@ -46,7 +46,7 @@ const SigninPage = () => {
         } else if (isError) {
             message.error("Login failed")
         }
-    }, [isSuccess, isError])
+    }, [isSuccess, isError, data])
 
     const handleGetDetailUser = async (id, token) => {
         const res = await UserService.getDetailUser(id, token)
@@ -63,7 +63,6 @@ const SigninPage = () => {
     }
 
     const handleSignIn = (value) => {
-
         mutation.mutate({
             email,
             password

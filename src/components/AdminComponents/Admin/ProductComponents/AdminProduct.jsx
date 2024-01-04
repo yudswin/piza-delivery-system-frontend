@@ -8,10 +8,14 @@ import * as FoodService from '../../../../services/FoodService'
 import * as message from '../../../Message/Message'
 // import * as message from '../../../Message/Message';
 import { useMutationHooks } from '../../../../hooks/useMutationHook'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { useQuery } from '@tanstack/react-query'
 
 
 const AdminProduct = () => {
 
+    const [allFoods, setAllFoods] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stateFood, setStateFood] = useState({
         name: '',
@@ -55,7 +59,20 @@ const AdminProduct = () => {
     )
 
     const { data, isSuccess, isError } = mutationCreateFood
+    
+    const fetchAllProduct = async () => {
+        const res = await FoodService.getAllFood()
+        if (res?.status === 'OK') {
+            setAllFoods(res?.data)
+        }
+        return res
+    }
 
+    const { data: foods } = useQuery({
+        queryKey: ['foods'],
+        queryFn: fetchAllProduct,
+        options: { retry: 3, retryDelay: 1000 }
+    })
 
     const handleOk = () => {
         handleCreateFood()

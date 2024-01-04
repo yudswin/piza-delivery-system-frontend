@@ -11,7 +11,7 @@ const CardComponent = ({ name }) => {
                 setImgSrc(image.default);
             })
             .catch((err) => {
-                console.error('Failed to load image', err);
+                // console.error('Failed to load image', err);
             });
     }, [name]);
 
