@@ -2,47 +2,27 @@ import React from 'react';
 import { Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-const TableComponent = () => {
+const TableComponent = (props) => {
 
-    
+    const { selectionType = 'checkbox', foods = [], isLoading = false } = props
+
     const columns = [
         {
-            title: 'Name',
+            title: 'Food Name',
             dataIndex: 'name',
-            sorter: (a, b) => a.name.length - b.name.length,
-            // ...getColumnSearchProps('name')
+            render: (text) => <>{text}</>
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
-            sorter: (a, b) => a.email.length - b.email.length,
-            // ...getColumnSearchProps('email')
+            title: 'Price',
+            dataIndex: 'price'
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            sorter: (a, b) => a.address.length - b.address.length,
-            // ...getColumnSearchProps('address')
+            title: 'Rating',
+            dataIndex: 'rating'
         },
         {
-            title: 'Admin',
-            dataIndex: 'isAdmin',
-            filters: [
-                {
-                    text: 'True',
-                    value: true,
-                },
-                {
-                    text: 'False',
-                    value: false,
-                }
-            ],
-        },
-        {
-            title: 'Phone',
-            dataIndex: 'phone',
-            sorter: (a, b) => a.phone - b.phone,
-            // ...getColumnSearchProps('phone')
+            title: 'Type',
+            dataIndex: 'type'
         },
         {
             title: '',
@@ -56,26 +36,10 @@ const TableComponent = () => {
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-        },
-    ];
+    const data = foods?.map((food) => {
+        return { ...food, key: food?._id }
+    })
+    console.log('data', data)
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -83,7 +47,15 @@ const TableComponent = () => {
         },
     };
 
-    return <Table rowSelection={rowSelection} columns={columns} dataSource={data} />;
+
+    return <Table
+        rowSelection={{
+            type: selectionType,
+            ...rowSelection,
+        }}
+        columns={columns}
+        dataSource={data}
+    />;
 };
 
 export default TableComponent;

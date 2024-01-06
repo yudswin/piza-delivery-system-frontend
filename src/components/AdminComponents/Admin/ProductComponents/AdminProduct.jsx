@@ -2,13 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { PlusOutlined } from '@ant-design/icons'
 import { StyledButton, AddTextHeader, HeaderWrapper, StyledButtonWrapper, AdminProductWrapper } from './style'
 import TableComponent from '../../../TableComponent/TableComponent'
-import { Checkbox, Form, Modal } from 'antd'
+import { Button, Checkbox, Form, Modal } from 'antd'
 import InputComponent from '../../../InputComponent/InputComponent'
 import * as FoodService from '../../../../services/FoodService'
 import * as message from '../../../Message/Message'
 // import * as message from '../../../Message/Message';
 import { useMutationHooks } from '../../../../hooks/useMutationHook'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useQuery } from '@tanstack/react-query'
 
 
@@ -28,6 +27,21 @@ const AdminProduct = () => {
         discount: 0,
         isBestSeller: false
     })
+
+    const fetchAllProduct = async () => {
+        try {
+            const res = await FoodService.getAllFood()
+            if (res?.status === 'OK') {
+                setAllFoods(res?.data)
+                console.log('allFoods', allFoods)
+            }
+            return res
+        }
+        catch {
+            console.log('error');
+        }
+    }
+
 
 
     const mutationCreateFood = useMutationHooks(
@@ -57,20 +71,10 @@ const AdminProduct = () => {
             return res
         }
     )
-
     const { data, isSuccess, isError } = mutationCreateFood
-    
-    const fetchAllProduct = async () => {
-        const res = await FoodService.getAllFood()
-        if (res?.status === 'OK') {
-            setAllFoods(res?.data)
-        }
-        return res
-    }
-
-    const { data: foods } = useQuery({
+    const { isLoading: isLoadingFoods, data: foods } = useQuery({
         queryKey: ['foods'],
-        queryFn: fetchAllProduct,
+        queryFn: FoodService.getAllFood,
         options: { retry: 3, retryDelay: 1000 }
     })
 
@@ -80,7 +84,7 @@ const AdminProduct = () => {
 
     const handleCreateFood = () => {
         mutationCreateFood.mutate(stateFood)
-        console.log('food', stateFood);
+        // console.log('food', stateFood);
     }
 
 
@@ -119,8 +123,6 @@ const AdminProduct = () => {
         }
     }, [isSuccess, data?.status, isError, handleCancel])
 
-
-
     return (
         <AdminProductWrapper>
             <HeaderWrapper>
@@ -133,7 +135,7 @@ const AdminProduct = () => {
                 </StyledButtonWrapper>
             </HeaderWrapper>
             <div>
-                <TableComponent />
+                <TableComponent foods={foods?.data} isLoading={isLoadingFoods}/>
             </div>
             <div>
                 <Modal title="New Food" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
