@@ -26,7 +26,7 @@ const SigninPage = () => {
     const { data, isSuccess, isError } = mutation
 
     useEffect(() => {
-        if (isSuccess) {
+        if (data?.status === 'OK') {
             if (location?.state) {
                 navigate(location?.state)
             } else {

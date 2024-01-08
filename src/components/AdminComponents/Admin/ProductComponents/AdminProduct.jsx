@@ -8,14 +8,12 @@ import * as FoodService from '../../../../services/FoodService'
 import * as message from '../../../Message/Message'
 // import * as message from '../../../Message/Message';
 import { useMutationHooks } from '../../../../hooks/useMutationHook'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
 
 
 const AdminProduct = () => {
 
     const [allFoods, setAllFoods] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [stateFood, setStateFood] = useState({
         name: '',
@@ -68,11 +66,13 @@ const AdminProduct = () => {
         return res
     }
 
-    const { data: foods } = useQuery({
-        queryKey: ['foods'],
-        queryFn: fetchAllProduct,
-        options: { retry: 3, retryDelay: 1000 }
-    })
+    console.log('allFoods', allFoods);
+
+    // const { data: foods } = useQuery({
+    //     queryKey: ['foods'],
+    //     queryFn: fetchAllProduct,
+    //     options: { retry: 3, retryDelay: 1000 }
+    // })
 
     const handleOk = () => {
         handleCreateFood()
@@ -116,6 +116,7 @@ const AdminProduct = () => {
             })
         } else if (isError) {
             message.error()
+            // fetchAllProduct()
         }
     }, [isSuccess, data?.status, isError, handleCancel])
 
